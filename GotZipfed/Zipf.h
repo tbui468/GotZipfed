@@ -2,6 +2,7 @@
 #include <map>
 #include <fstream>
 #include <string>
+#include "Boost.h"
 
 
 class Zipf {
