@@ -3,10 +3,15 @@
 
 #include <iostream>
 #include "Zipf.h"
+#include <iterator>
+#include <algorithm>
+
+#include <boost/lambda/lambda.hpp>
 
 
 int main()
 {
+    
     std::ofstream my_file("Test.txt");
     my_file << "THis is a test a a";
     my_file.close();
@@ -19,7 +24,18 @@ int main()
     for (std::map<std::string, int>::iterator iter = map->begin(); iter != map->end(); ++iter) {
         std::cout << iter->first << ": " << iter->second << std::endl;
     }
-    std::cin.get();
+
+    /*
+    std::cout << "Test" << std::endl;
+    const char* c = "test";
+    std::cout << c[1] << std::endl;
+
+    using namespace boost::lambda;
+    typedef std::istream_iterator<int> in;
+
+    std::for_each(
+        in(std::cin), in(), std::cout << (_1 * 3) << " ");
+ */
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

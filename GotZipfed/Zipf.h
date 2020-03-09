@@ -2,12 +2,13 @@
 #include <map>
 #include <fstream>
 #include <string>
-#include "Boost.h"
+#include <algorithm>
 
 
 class Zipf {
 private:
 	std::map<std::string, int>* word_map;
+	const char* chars = "\"'.,?!;:_";
 private:
 	void format_word(std::string& word);
 public:
