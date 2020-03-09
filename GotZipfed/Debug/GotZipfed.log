@@ -2,4 +2,5 @@
   Unknown compiler version - please run the configure tests and report the results
   Zipf.cpp
   Generating Code...
+  LINK : C:\Users\Thomas\source\repos\GotZipfed\Debug\GotZipfed.exe not found or not built by the last incremental link; performing full link
   GotZipfed.vcxproj -> C:\Users\Thomas\source\repos\GotZipfed\Debug\GotZipfed.exe

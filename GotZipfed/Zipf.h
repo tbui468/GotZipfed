@@ -11,6 +11,7 @@ private:
 	const char* chars = "\"'.,?!;:_";
 private:
 	void format_word(std::string& word);
+	void sort_map();
 public:
 	Zipf(std::string file_name);
 	~Zipf();

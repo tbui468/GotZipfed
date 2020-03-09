@@ -17,6 +17,11 @@ Zipf::Zipf(std::string file_name) {
 	my_file.close();
 }
 
+Zipf::~Zipf() {
+	//delete word_map;
+}
+
+
 //removes non-letter characters such as ",',_,?,commas
 //lowercase the entire word
 void Zipf::format_word(std::string& word) {
@@ -28,6 +33,7 @@ void Zipf::format_word(std::string& word) {
 	}
 }
 
-Zipf::~Zipf() {
-	delete word_map;
+
+void Zipf::sort_map() {
+
 }
