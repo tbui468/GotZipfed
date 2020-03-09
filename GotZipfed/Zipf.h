@@ -3,17 +3,20 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
+#include <iterator>
 
 
 class Zipf {
 private:
 	std::map<std::string, int>* word_map;
+	std::multimap<int, std::string>* final_map;
 	const char* chars = "\"'.,?!;:_";
 private:
 	void format_word(std::string& word);
-	void sort_map();
+	std::pair<int, std::string> flip_pair(const std::pair<std::string, int>& pair);
+	void flip_map();
 public:
 	Zipf(std::string file_name);
 	~Zipf();
-	std::map<std::string, int>* get_map() { return word_map; };
+	std::multimap<int, std::string > * get_map() { return final_map; };
 };

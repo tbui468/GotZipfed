@@ -34,6 +34,12 @@ void Zipf::format_word(std::string& word) {
 }
 
 
-void Zipf::sort_map() {
 
+std::pair<int, std::string> Zipf::flip_pair(const std::pair<std::string, int>& pair) {
+	return std::pair<int, std::string>(pair.second, pair.first);
+}
+
+void Zipf::flip_map() {
+	//std::transform(word_map->begin(), word_map->end(), std::inserter(*final_map, final_map->begin()),
+		//flip_pair<std::string, int>);
 }

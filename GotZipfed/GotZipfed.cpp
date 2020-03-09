@@ -12,18 +12,20 @@
 int main()
 {
     
-    std::ofstream my_file("Test.txt");
-    my_file << "THis is a test a a";
-    my_file.close();
 
     Zipf zipf("Pride and Prejudice Short.txt");
-    std::map<std::string, int>* map = zipf.get_map();
+    std::multimap<int, std::string>* map = zipf.get_map();
 
-
-    std::cout << "map size: " << map->size() << std::endl;
-    for (std::map<std::string, int>::iterator iter = map->begin(); iter != map->end(); ++iter) {
+    std::pair<int, std::string> top_word(0, "test");
+    for (std::multimap<int, std::string > ::iterator iter = map->begin(); iter != map->end(); ++iter) {
         std::cout << iter->first << ": " << iter->second << std::endl;
+        if (iter->first > top_word.first) {
+            top_word.first = iter->first;
+            top_word.second = iter->second;
+        }
     }
+
+    std::cout << "The most common word is '" << top_word.first << "' with " << top_word.second << " occurrences." << std::endl;
 
     /*
     std::cout << "Test" << std::endl;
