@@ -25,8 +25,18 @@ bool Screen::init() {
 		return false;
 	}
 
-	//m_texture = SDL_CreateTexture(m_renderer, )
+	m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
+	if (m_texture == nullptr) {
+		std::cout << "Could not create texture\n";
+		SDL_DestroyWindow(m_window);
+		SDL_DestroyRenderer(m_renderer);
+		SDL_Quit();
+		return false;
+	}
 	m_buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
+
+	memset(m_buffer, 0x00, SCREEN_WIDTH * SCREEN_HEIGHT);
+
 	return true;
 }
 
