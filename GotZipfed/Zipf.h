@@ -16,7 +16,7 @@ private:
 	std::pair<int, std::string> flip_pair(const std::pair<std::string, int>& pair);
 	
 public:
-	Zipf(std::string file_name);
+	Zipf(const std::string& file_name);
 	~Zipf();
 	std::multimap<int, std::string > * get_map() { return final_map; };
 	void flip_map();

@@ -1,6 +1,6 @@
 #include "Zipf.h"
 
-Zipf::Zipf(std::string file_name) {
+Zipf::Zipf(const std::string& file_name) {
 	word_map = new std::map < std::string, int>;
 	final_map = new std::multimap<int, std::string>;
 	std::ifstream my_file(file_name);

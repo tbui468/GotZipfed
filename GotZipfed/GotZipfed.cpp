@@ -1,36 +1,40 @@
 // GotZipfed.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
 #include <iostream>
-#include "Zipf.h"
-#include "SDL.h"
 #include <iterator>
 #include <algorithm>
-#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/lambda.hpp> //not used.  Just testing integration of boost library
+#include "SDL.h"
+#include "Zipf.h"
+#include "Screen.h"
 
 
 int main(int argc, char* args[])
 {
 
+    Screen screen;
+    screen.init();
+
     Zipf zipf("Moby Dick.txt");
     std::multimap<int, std::string>* map = zipf.get_map();
-    std::pair<int, std::string> top_word(0, "test");
     int count = 1;
     for (std::multimap<int, std::string > ::iterator iter = map->end(); iter != map->begin(); --iter) {
         if (iter == map->end()) iter--;
         std::cout << count << ". " << iter->second << ": " << iter->first << std::endl;
-        if (iter->first > top_word.first) {
-            top_word.first = iter->first;
-            top_word.second = iter->second;
-        }
         ++count;
         if (count > 29) break;
     }
 
-    std::cout << "The most common word is '" << top_word.second << "' with " << top_word.first << " occurrences." << std::endl;
+
+    while (screen.process_events()) {
+
+    }
+
+    screen.close();
 
     return 0;
 
-    /*
+    /* TESTING BOOST LIBRARY INTEGRATION
     std::cout << "Test" << std::endl;
     const char* c = "test";
     std::cout << c[1] << std::endl;

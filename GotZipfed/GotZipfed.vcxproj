@@ -156,9 +156,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GotZipfed.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Zipf.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="Zipf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
