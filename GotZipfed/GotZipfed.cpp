@@ -1,5 +1,4 @@
 // GotZipfed.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
 #include "Zipf.h"
@@ -11,20 +10,23 @@
 
 int main()
 {
-    
 
-    Zipf zipf("Pride and Prejudice Short.txt");
+    Zipf zipf("Moby Dick.txt");
     std::multimap<int, std::string>* map = zipf.get_map();
     std::pair<int, std::string> top_word(0, "test");
-    for (std::multimap<int, std::string > ::iterator iter = map->begin(); iter != map->end(); ++iter) {
-        std::cout << iter->second << ": " << iter->first << std::endl;
+    int count = 1;
+    for (std::multimap<int, std::string > ::iterator iter = map->end(); iter != map->begin(); --iter) {
+        if (iter == map->end()) iter--;
+        std::cout << count << ". " << iter->second << ": " << iter->first << std::endl;
         if (iter->first > top_word.first) {
             top_word.first = iter->first;
             top_word.second = iter->second;
         }
+        ++count;
+        if (count > 29) break;
     }
 
-    std::cout << "The most common word is '" << top_word.first << "' with " << top_word.second << " occurrences." << std::endl;
+    std::cout << "The most common word is '" << top_word.second << "' with " << top_word.first << " occurrences." << std::endl;
 
     /*
     std::cout << "Test" << std::endl;
