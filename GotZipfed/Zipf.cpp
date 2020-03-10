@@ -2,6 +2,7 @@
 
 Zipf::Zipf(std::string file_name) {
 	word_map = new std::map < std::string, int>;
+	final_map = new std::multimap<int, std::string>;
 	std::ifstream my_file(file_name);
 	std::string word; 
 	while (my_file >> word) {
@@ -14,11 +15,13 @@ Zipf::Zipf(std::string file_name) {
 			iter->second++;
 		}
 	}
+	flip_map();
 	my_file.close();
 }
 
 Zipf::~Zipf() {
-	//delete word_map;
+	delete word_map;
+	delete final_map;
 }
 
 
@@ -40,6 +43,7 @@ std::pair<int, std::string> Zipf::flip_pair(const std::pair<std::string, int>& p
 }
 
 void Zipf::flip_map() {
-	//std::transform(word_map->begin(), word_map->end(), std::inserter(*final_map, final_map->begin()),
-		//flip_pair<std::string, int>);
+	for (std::map<std::string, int>::iterator iter = word_map->begin(); iter != word_map->end(); ++iter) {
+		final_map->insert(std::pair<int, std::string>(iter->second, iter->first));
+	}
 }

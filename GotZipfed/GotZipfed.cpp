@@ -15,10 +15,9 @@ int main()
 
     Zipf zipf("Pride and Prejudice Short.txt");
     std::multimap<int, std::string>* map = zipf.get_map();
-
     std::pair<int, std::string> top_word(0, "test");
     for (std::multimap<int, std::string > ::iterator iter = map->begin(); iter != map->end(); ++iter) {
-        std::cout << iter->first << ": " << iter->second << std::endl;
+        std::cout << iter->second << ": " << iter->first << std::endl;
         if (iter->first > top_word.first) {
             top_word.first = iter->first;
             top_word.second = iter->second;
