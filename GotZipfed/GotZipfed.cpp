@@ -2,13 +2,13 @@
 
 #include <iostream>
 #include "Zipf.h"
+#include "SDL.h"
 #include <iterator>
 #include <algorithm>
-
 #include <boost/lambda/lambda.hpp>
 
 
-int main()
+int main(int argc, char* args[])
 {
 
     Zipf zipf("Moby Dick.txt");
@@ -27,6 +27,8 @@ int main()
     }
 
     std::cout << "The most common word is '" << top_word.second << "' with " << top_word.first << " occurrences." << std::endl;
+
+    return 0;
 
     /*
     std::cout << "Test" << std::endl;
