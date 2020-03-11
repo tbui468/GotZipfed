@@ -22,7 +22,7 @@ int main(int argc, char* args[])
         if (iter == map->end()) iter--;
         std::cout << count << ". " << iter->second << ": " << iter->first << std::endl;
         ++count;
-        if (count > 29) break;
+        if (count > 30) break;
     }
 
 
