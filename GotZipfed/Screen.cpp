@@ -40,11 +40,9 @@ bool Screen::init() {
 	m_color = new int(0);
 
 	memset(m_buffer, 0x000000FF, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
-	set_color(255,150,150);
+
+	set_color(0,0,0);
 	draw_background();
-	set_color(255, 255, 255);
-	draw_pixel(400, 300);
-	//update renderer and texture to display here
 	update();
 
 	return true;
