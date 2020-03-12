@@ -1,5 +1,15 @@
 // GotZipfed.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
+/*
+Features to add
+*************
+Refactor graphing code and put into function (inside GotZipfed.cpp file)
+Call graphing function three times on Pride and Prejudice, Moby Dick and Edgar Allan Poe texts
+Each graph can be distinguished by different color
+Graph the ideal Zipf curve to compare
+Have the graph function include an optional logarithmic version
+*/
+
 #include <iostream>
 #include <iterator>
 #include <algorithm>
