@@ -75,7 +75,8 @@ void Screen::update() {
 
 
 void Screen::draw_pixel(int x, int y) {
-	m_buffer[y * SCREEN_WIDTH + x] = *m_color;
+	if(inside_window(x, y))
+		m_buffer[y * SCREEN_WIDTH + x] = *m_color;
 }
 
 void Screen::draw_background() {
@@ -95,5 +96,25 @@ void Screen::set_color(unsigned char r, unsigned char g, unsigned char b) {
 }
 
 void Screen::draw_line(int x_start, int y_start, int x_end, int y_end) {
+	int x_delta = x_end - x_start;
+	int y_delta = y_end - y_start;
+	int longest_dis = abs(x_delta) < abs(y_delta) ? abs(y_delta) : abs(x_delta);
+	double x_shift = (double)x_delta / longest_dis;
+	double y_shift = (double)y_delta / longest_dis;
+	//x_shift = (x_end - x_start) > 0 ? x_shift : -x_shift;
+	//y_shift = (y_end - y_start) > 0 ? y_shift : -y_shift;
 
+	for (int i = 0; i < longest_dis; ++i) {
+		int x = (int)(x_start + x_shift * i);
+		int y = (int)(y_start + y_shift * i);
+		draw_pixel(x, y);
+	}
+}
+
+bool Screen::inside_window(int x, int y) {
+	if (y < 0) return false;
+	if (y >= SCREEN_HEIGHT) return false;
+	if (x < 0) return false;
+	if (x >= SCREEN_WIDTH) return false;
+	return true;
 }

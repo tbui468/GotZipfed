@@ -10,8 +10,8 @@ private:
 	Uint32* m_buffer;
 	int* m_color;
 public:
-	const int SCREEN_WIDTH = 800;
-	const int SCREEN_HEIGHT = 600;
+	static const int SCREEN_WIDTH = 800;
+	static const int SCREEN_HEIGHT = 600;
 public:
 	Screen();
 	bool init();
@@ -22,5 +22,6 @@ public:
 	void draw_pixel(int x, int y);
 	void draw_background();
 	void draw_line(int x_start, int y_start, int x_end, int y_end);
+	bool inside_window(int x, int y);
 };
 
