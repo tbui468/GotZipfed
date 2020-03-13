@@ -19,6 +19,33 @@ Have the graph function include an optional logarithmic version
 #include "Zipf.h"
 #include "Screen.h"
 
+void plot(const std::string& title, Screen& screen) {
+    Zipf zipf(title);
+    std::multimap<int, std::string>* map = zipf.get_map();
+
+    int count = 0;
+    int unique_words = map->size() / 32;
+    int max_words = (--map->end())->first;
+    int x_start = 50;
+    int y_start = 550;
+    for (std::multimap<int, std::string > ::iterator iter = map->end(); iter != map->begin(); --iter) {
+        if (iter == map->end()) iter--;
+        //std::cout << count << ". " << iter->second << ": " << iter->first << std::endl;
+        ++count;
+
+        //if (count > 30) break;
+        double x_shift = ((double)count / unique_words) * 700;
+        double y_shift = -((double)iter->first / max_words) * 500;
+        screen.draw_pixel(x_start + 1 + x_shift, y_start +y_shift);
+        screen.draw_pixel(x_start + 1 + x_shift+1, y_start + y_shift);
+        screen.draw_pixel(x_start + 1 + x_shift, y_start + y_shift+1);
+        screen.draw_pixel(x_start + 2 + x_shift, y_start + y_shift+1);
+        if (count > unique_words) break;
+    }
+
+    std::cout << "number of different words: " << unique_words << std::endl;
+}
+
 
 int main(int argc, char* args[])
 {
@@ -26,25 +53,12 @@ int main(int argc, char* args[])
     Screen screen;
     screen.init();
 
-    Zipf zipf("Pride and Prejudice.txt");
-    std::multimap<int, std::string>* map = zipf.get_map();
-    int count = 0;
-    int unique_words = map->size()/16;
-    int max_words = (--map->end())->first;
-    int x_start = 50;
-    int y_start = 550;
-    screen.set_color(255, 255, 255);
-    for (std::multimap<int, std::string > ::iterator iter = map->end(); iter != map->begin(); --iter) {
-        if (iter == map->end()) iter--;
-        //std::cout << count << ". " << iter->second << ": " << iter->first << std::endl;
-        ++count;
-        
-        //if (count > 30) break;
-        screen.draw_pixel(x_start+1 + ((double)count/unique_words)*700, y_start-((double)iter->first/max_words)*500);
-        if (count > unique_words) break;
-    }
-
-    std::cout << "number of different words: " << unique_words << std::endl;
+    screen.set_color(255, 100, 100);
+    plot("Moby Dick.txt", screen);
+    screen.set_color(0, 255, 0);
+    plot("Pride and Prejudice.txt", screen);
+    screen.set_color(100, 100, 255);
+    plot("Crime and Punishment.txt", screen);
 
     screen.set_color(255, 255, 255);
     screen.draw_line(50, 50, 50, 550);

@@ -15,6 +15,7 @@ Zipf::Zipf(const std::string& file_name) {
 			iter->second++;
 		}
 	}
+
 	flip_map();
 	my_file.close();
 }
